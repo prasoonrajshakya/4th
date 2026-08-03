@@ -27,9 +27,9 @@ create table research_area(
 
 create table research_project(
 	projectID int primary key,
-    areaID int,
-    facultyID int,
-    title varchar(10),
+    areaID int not null,
+    facultyID int not null,
+    title varchar(100),
     startDate date,
     endDate date,
     budget decimal(10,2),
