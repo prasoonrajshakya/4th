@@ -136,3 +136,15 @@ create table publication_authors(
 		references authors(authorID)
 );
 
+desc faculty;
+desc students;
+desc research_area;
+desc research_project;
+desc student_projects;
+desc funding_agency;
+desc project_funding;
+desc laboratory;
+desc project_lab;
+desc publications;
+desc authors;
+desc publication_authors;
