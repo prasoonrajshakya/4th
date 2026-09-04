@@ -1,3 +1,5 @@
+#LAB 3.2 Implement Program that identifies valid Gmail.
+
 import os
 
 os.system("cls")

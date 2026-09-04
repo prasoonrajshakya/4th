@@ -1,0 +1,123 @@
+=== PARAGRAPHS ===
+P000 [Heading 2]: Lab 4: Implementation of Dynamic/Interior/Exterior Routing (RIP, OSPF, BGP)
+P001 [Normal]: Objective:
+P002 [Normal]: 4.1) Implementation of Routing Information Protocol (RIP)
+P003 [Normal]: 4.2) Implementation of Open Shortest Path First (OSPF)
+P004 [Heading 3]: Theory
+P005 [Normal]: 1. Dynamic Routing
+P006 [Normal]: Dynamic routing is a routing method in which routers automatically learn and update network routes using routing protocols. Unlike static routing, it allows routers to adapt to changes in network topology and automatically select suitable paths for packet transmission.
+P007 [Normal]: Dynamic routing protocols are generally classified into:
+P008 [Normal]: Interior Gateway Protocols (IGPs): Used for routing within a single Autonomous System (AS). Examples include RIP and OSPF. 
+P009 [Normal]: Exterior Gateway Protocols (EGPs): Used for routing between different Autonomous Systems. The most widely used EGP is BGP.
+P010 [Normal]: 2. Routing Information Protocol (RIP)
+P011 [Normal]: RIP is a distance-vector interior gateway routing protocol (IGP) used to exchange routing information within an autonomous system. It uses hop count as its routing metric, where the route with the fewest hops is preferred. RIP supports a maximum of 15 hops, while a hop count of 16 represents an unreachable network. In Cisco Packet Tracer, RIP can be configured using commands such as router rip, network, and version 2.
+P012 [Normal]: 3. Open Shortest Path First (OSPF)
+P013 [Normal]: OSPF is a link-state interior gateway routing protocol that determines the shortest path to a destination using the Shortest Path First (SPF) algorithm. Routers exchange link-state information to build a topology database and calculate optimal routes. OSPF uses cost as its routing metric and supports hierarchical network design using areas, with Area 0 commonly serving as the backbone area.
+P014 [Normal]: 4. RIP and OSPF Configuration
+P015 [Normal]: The lab involves configuring routers with RIP and OSPF and advertising the connected networks so that routers can dynamically learn routes. After configuration, routing tables and network connectivity can be verified using Cisco IOS commands such as show ip route and connectivity-testing commands such as ping.
+P016 [Normal]: 
+P017 [Heading 3]: Components Required
+P018 [Normal]: Cisco Packet Tracer 
+P019 [Normal]: 3 Routers (2901)
+P020 [Normal]: 2 Switches (2960)
+P021 [Normal]: PCs/Laptops 
+P022 [Normal]: Copper Straight-Through Cables
+P023 [Normal]: Copper Cross-Over Cables
+P024 [Normal]: Procedure:
+P025 [Normal]: Network Topology Setup
+P026 [Normal]: Steps
+P027 [Normal]: Open Cisco Packet Tracer. 
+P028 [Normal]: Place three routers, two switches, and end devices. 
+P029 [Normal]: Connect: 
+P030 [Normal]: PCs to switches using Copper Straight-Through cables. 
+P031 [Normal]: Switches to routers. 
+P032 [Normal]: Routers to one another. 
+P033 [Normal]: Assign IP addresses to every router interface. 
+P034 [Normal]: 
+P035 [List Paragraph]: Configure IP addresses on Router interface.
+P036 [Normal (Web)]: 
+P037 [List Paragraph]: Configure the DHCP service on the router for LAN 1 by creating a DHCP pool. 
+P038 [Normal (Web)]: Prasoon_R1(config)#ip dh
+P039 [Normal (Web)]: Prasoon_R1(config)#ip dhcp pool LAN1
+P040 [Normal (Web)]: Prasoon_R1(dhcp-config)#network 192.168.1.1 255.255.255.0
+P041 [Normal (Web)]: Prasoon_R1(dhcp-config)#default-router 192.168.1.1
+P042 [Normal (Web)]: Prasoon_R1(dhcp-config)#dns-server 1.2.3.4
+P043 [Normal (Web)]: Prasoon_R1(dhcp-config)#exit
+P044 [Normal]: 
+P045 [List Paragraph]: Repeat the process for other routers
+P046 [List Paragraph]: Configure the PCs to obtain IP addresses automatically:
+P047 [Normal (Web)]: 
+P048 [Normal (Web)]: Document each client’s received IP addresses.
+P049 [List Paragraph]: 
+P050 [Normal (Web)]: IP Addressing Scheme
+P051 [Normal]: 
+P052 [List Paragraph]: Routing Information Protocol
+P053 [Normal]: Verifing interface connectivity by pinging directly connected networks.
+P054 [Normal]: Ping Test Results from PC0
+P055 [Normal]: Pinging 192.168.1.0 from 192.168.1.2: Successful 
+P056 [Normal]: Pinging 192.168.1.1 from 192.168.1.2: Successful 
+P057 [Normal]: Pinging 172.16.1.1 from 192.168.1.2: Successful 
+P058 [Normal]: Pinging 172.16.1.2 (Prasoon_R2) from 192.168.1.2:
+P059 [Normal]: Unsuccessful (Request timed out; 100% packet loss)
+P060 [Normal]: 
+P061 [Normal]: 
+P062 [Normal]: 
+P063 [Normal]: Here, remote networks cannot be reached because routing information is unavailable.
+P064 [Normal]: 
+P065 [Normal]: 
+P066 [Normal]: Procedure:
+P067 [Normal (Web)]: Configure RIP routes on Prasoon_R1 to reach LAN 1, Prasoon_R2 and Prasoon_R3. 
+P068 [Normal (Web)]: To initially check the static route status use: sh ip route
+P069 [Normal (Web)]: To establish connection use: 
+P070 [Normal (Web)]: Prasoon_R1>en
+P071 [Normal (Web)]: Prasoon_R1#conf t
+P072 [Normal (Web)]: Enter configuration commands, one per line. End with CNTL/Z.
+P073 [Normal (Web)]: Prasoon_R1(config)#router rip
+P074 [Normal (Web)]: Prasoon_R1(config-router)#version 2
+P075 [Normal (Web)]: Prasoon_R1(config-router)#network 192.168.1.0	
+P076 [Normal (Web)]: Prasoon_R1(config-router)#network 172.16.1.0
+P077 [Normal (Web)]: Prasoon_R1(config-router)#network 172.16.1.8
+P078 [Normal (Web)]: Prasoon_R1(config-router)#
+P079 [Normal (Web)]: Configure RIP routes on Prasoon_R2 to reach Prasoon_R1 and Prasoon_R3.
+P080 [Normal (Web)]: To initially check the static route status use: sh ip route
+P081 [Normal (Web)]: To establish connection use:
+P082 [Normal (Web)]: Prasoon_R2 # conf t
+P083 [Normal (Web)]: Prasoon_R2 (config) # router rip
+P084 [Normal (Web)]: Prasoon_R2 (config-router) # version 2
+P085 [Normal (Web)]: Prasoon_R2 (config-router) # network 172.16.1.0
+P086 [Normal (Web)]: Prasoon_R2 (config-router) # network 172.16.1.4
+P087 [Normal (Web)]: Prasoon_R2 (config-router) # exit
+P088 [Normal (Web)]: Prasoon_R2 (config) # exit
+P089 [Normal (Web)]: Prasoon_R2 # wr
+P090 [Normal (Web)]: Configure RIP routes on Prasoon_R3 to reach LAN 2, Prasoon_R2, and Prasoon_R1.
+P091 [Normal (Web)]: To initially check the static route status use: sh ip route
+P092 [Normal (Web)]: To establish connection use:
+P093 [Normal (Web)]: Prasoon_R3 # conf t
+P094 [Normal (Web)]: Prasoon_R3 (config) # router rip
+P095 [Normal (Web)]: Prasoon_R3 (config-router) # version 2
+P096 [Normal (Web)]: Prasoon_R3 (config-router) # network 172.16.1.0
+P097 [Normal (Web)]: Prasoon_R3 (config-router) # network 172.16.1.4
+P098 [Normal (Web)]: Prasoon_R3 (config-router) # exit
+P099 [Normal (Web)]: Prasoon_R3 (config) # exit
+P100 [Normal (Web)]: Prasoon_R3 # wr
+P101 [Normal (Web)]: Ping devices located on the opposite network to test the connection
+P102 [Normal]: 
+P103 [Normal]: Pinging 172.16.1.2 (Prasoon_R2) from 192.168.1.2:Successful
+P104 [Normal (Web)]: 
+P105 [List Paragraph]: Pinging 192.168.2.2 from 192.168.1.2:Successful
+P106 [List Paragraph]: 
+P107 [List Paragraph]: Observations
+P108 [List Paragraph]: RIP Version 2 was successfully configured on all routers, enabling the automatic exchange of routing information. After configuration, the routers learned remote networks dynamically, and communication between different LANs was successfully established and verified using the ping command.
+P109 [List Paragraph]: 
+
+=== TABLES ===
+Table 0:
+Device | Interface | IP Address | Subnet Mask | Connected To | Network
+Prasoon_R1 | G0/0 | 172.16.1.1 | 255.255.255.252 | Prasoon_R2 | 172.16.1.0/30
+Prasoon_R2 | G0/0 | 172.16.1.2 | 255.255.255.252 | Prasoon_R1 | 172.16.1.0/30
+Prasoon_R2 | G0/1 | 172.16.1.5 | 255.255.255.252 | Prasoon_R3 | 172.16.1.4/30
+Prasoon_R3 | G0/1 | 172.16.1.6 | 255.255.255.252 | Prasoon_R2 | 172.16.1.4/30
+Prasoon_R1 | G0/2 | 172.16.1.9 | 255.255.255.252 | Prasoon_R3 | 172.16.1.8/30
+Prasoon_R3 | G0/2 | 172.16.1.10 | 255.255.255.252 | Prasoon_R1 | 172.16.1.8/30
+Prasoon_R1 | G0/1 | 192.168.1.1 | 255.255.255.0 | Switch0 (LAN1) | 192.168.1.0/24
+Prasoon_R3 | G0/0 | 192.168.2.1 | 255.255.255.0 | Switch1 (LAN2) | 192.168.2.0/24
