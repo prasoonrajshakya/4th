@@ -47,11 +47,9 @@ void print(int pid[], int at[], int bt[], int wt[], int tat[], int n) {
         avg_wt += wt[i];
         avg_tat += tat[i];
     }
-    printf("Average waiting time= %f\n",avg_wt/3);
-    printf("Average turn around time= %f",avg_tat/3);
+    printf("Average waiting time= %f\n",avg_wt/n);
+    printf("Average turn around time= %f",avg_tat/n);
 }
-
-#include <stdio.h>
 
 int main() {
     int n = 3;

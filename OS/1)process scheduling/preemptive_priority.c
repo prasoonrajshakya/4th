@@ -16,7 +16,6 @@ void preemptivePriority(int pid[], int at[], int bt[], int pr[], int n) {
 
         for(i = 0; i < n; i++) {
             if(at[i] <= time && rem_bt[i] > 0) {
-
                 if(highest == -1 || pr[i] < pr[highest])
                     highest = i;
             }
